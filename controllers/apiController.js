@@ -86,7 +86,7 @@ module.exports = function(app){
             'TAGAPO',
             'CALAMBA',
             'MAYAPA',
-            'TANAUAN',
+            'TANAUAN/STO. TOMAS',
             'SAN PEDRO',
             'PALA-PALA',
             'MAMATID',
@@ -134,6 +134,40 @@ module.exports = function(app){
 
                 });
             }
+
+            function countNumberOfParticipants(){
+                return new Promise(function(resolve, reject){
+
+                    mysql.getConnection(function(err, connection){
+                        if(err){return reject(err)};
+
+                        connection.query({
+                            sql: 'SELECT COUNT(id) as numberOfparticipants FROM tbl_survey_participants',
+                            values: [user_details.employeeNumber]
+                        },  function(err, results){
+                            if(err){return reject(err)};
+                            if(typeof results[0] !== 'undefined' && results[0] !== null && results.length > 0){
+                                let countParticipants = results[0].numberOfparticipants;
+
+                                resolve(countParticipants)
+                            } else {
+                                let countParticipants = 0;
+
+                                resolve(countParticipants);
+                            }
+                        });
+
+                        connection.release();
+
+
+                    });
+
+                });
+            }
+
+            countNumberOfParticipants().then(function(countParticipants){
+                console.log(countParticipants);
+            });
 
             validateParticipants().then(function(canteen_and_shuttle_forms){
                 res.render('index', {canteen_form_list, shuttle_form_list,shuttle_route_list, user_details, canteen_and_shuttle_forms});
