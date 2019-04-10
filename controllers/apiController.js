@@ -70,7 +70,7 @@ module.exports = function(app){
             {name: 'sss_q8', question: 'Aircon is working properly'},
             {name: 'sss_q9', question: 'Shuttle is always clean'},
             {name: 'sss_q10', question: 'Trashcan is available '},
-            {name: 'sss_q11', question: 'Bus/shuttle'},
+            {name: 'sss_q11', question: 'Bus/shuttle manifest is always prepared, readily available, and all details are filled out.'},
             {name: 'sss_q12', question: 'Driver helps ensure that priority seating is followed for employees who are pregnant and disabled'},
             {name: 'sss_q13', question: 'Driver promotes on-time pick-up in designated pick-up points'},
             {name: 'sss_q14', question: 'Driver shows dedication and is familiar with the assigned routes'},
