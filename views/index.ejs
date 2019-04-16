@@ -109,6 +109,18 @@
     <!-- Main content -->
     <section class="content">
     <% if(canteen_and_shuttle_forms) { %>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="col-md-6">
+                        <input type="checkbox" class="form-check-input" name="shuttle_rider" id="shuttle_rider" onclick="displayShuttleForm()"/>
+                        <label class="form-check-label" for="shuttle_rider">I use the shuttle services provided by SunPower</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <form id="canteen_and_shuttle_survey">
         <div class="row">
             <!-- Canteen form box -->
@@ -148,7 +160,7 @@
                                 </p>
                                 <p class="text-xl  text-right">
                                     <div class="col-md-6">
-                                        <textarea id="<%= canteen_form_list[i].name %>" type="text" required name="<%= canteen_form_list[i].name %>" class="form-control" value=""></textarea>
+                                        <textarea id="<%= canteen_form_list[i].name %>" type="text" name="<%= canteen_form_list[i].name %>" class="form-control" value=""></textarea>
                                     </div>
                                 </p>
                             </div>
@@ -170,11 +182,11 @@
             <!-- /.card -->
 
             <!-- Shuttle form box -->
-            <div class="col-md-6">
+            <div class="col-md-6" id="shuttleForm">
                 <div class="card">
                     <div class="card-header no-border bg-warning">
                         <div class="d-flex justify-content-between">
-                            <h3 class="card-title">Shuttle Satisfaction Survey</h3>
+                            <h3 class="card-title">Shuttle Satisfaction Survey (For Shuttle riders only)</h3>
                             <a href="#"></a>
                         </div>
                     </div>
@@ -187,7 +199,7 @@
                             </p>
                             <p class="text-xl  text-right">
                                 <div class="col-md-6">
-                                    <select id="shuttle_route" type="text" name="shuttle_route" required value="" class="form-control">
+                                    <select id="shuttle_route" type="text" name="shuttle_route" id="shuttle_route" value="" class="form-control">
                                         <option selected disabled></option>
                                         <% for(let i=0; i<shuttle_route_list.length; i++){ %>
                                             <option value="<%= shuttle_route_list[i] %>"><%= shuttle_route_list[i] %></option>
@@ -246,7 +258,7 @@
                                 </p>
                                 <p class="text-xl  text-right">
                                     <div class="col-md-6">
-                                        <textarea id="<%= shuttle_form_list[i].name %>" type="text" required name="<%= shuttle_form_list[i].name %>" value="" class="form-control"></textarea>
+                                        <textarea id="<%= shuttle_form_list[i].name %>" type="text" name="<%= shuttle_form_list[i].name %>" value="" class="form-control"></textarea>
                                     </div>
                                 </p>
                             </div>
@@ -275,10 +287,10 @@
                         </div>
                         <div id="toHideIfSuccess">
                             <div class="row">
-                                <div class="col-md-6" style="padding-bottom: 20px;">
+                                <div class="col-md-12" style="padding-bottom: 20px;">
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" name="anonymous_submission" id="anonymous_submission" value="Yes"/>
-                                        <label class="form-check-label" for="anonymous_submission">I am submitting this survey <u title="adverb: in a way that prevents a person from being identified by name.">anonymously</u> and use my shift and department information instead.</label>
+                                        <label class="form-check-label" for="anonymous_submission">I am submitting this survey <u title="adverb: in a way that prevents a person from being identified by name.">anonymously</u> and prefer the use of my shift and department information instead.</label>
                                     </div>
                                 </div>
                             </div>
@@ -338,16 +350,38 @@
 
 <script src="../assets/plugins/ionslider/ion.rangeSlider.min.js"></script>
 <script>
+    
+    var shuttleForm = document.getElementById("shuttleForm");
+    shuttleForm.style.display = "none";
+    
+
+    function displayShuttleForm() {
+        // Get the checkbox
+        var checkBox = document.getElementById("shuttle_rider");
+        // Get the output shuttleForm 
+        var shuttleForm = document.getElementById("shuttleForm");
+
+        var shutte_route = document.getElementById("shuttle_route");
+
+        // If the checkbox is checked, display the output text
+        if (checkBox.checked == true){
+            shuttleForm.style.display = "block";
+            shutte_route.required = true;
+        } else {
+            shuttleForm.style.display = "none";
+            shutte_route.required = false;
+        }
+    }
 
     <% for(let i=0; i<canteen_form_list.length;i++) { %>
         <% if(i <= 14) { %>
             $('#<%= canteen_form_list[i].name %>').ionRangeSlider({
-                min     : 1,
+                min     : 0,
                 max     : 5,
                 type    : 'single',
                 step    : 1,
                 postfix : ' points',
-                prettify: false,
+                prettify: true,
                 hasGrid : false,
                 hideMinMax: true
             });  
@@ -357,12 +391,12 @@
     <% for(let i=0; i<shuttle_form_list.length;i++) { %>
         <% if(i <= 14) { %>
             $('#<%= shuttle_form_list[i].name %>').ionRangeSlider({
-                min     : 1,
+                min     : 0,
                 max     : 5,
                 type    : 'single',
                 step    : 1,
                 postfix : ' points',
-                prettify: false,
+                prettify: true,
                 hasGrid : false,
                 hideMinMax: true
             });

@@ -166,7 +166,7 @@ module.exports = function(app){
             }
 
             countNumberOfParticipants().then(function(countParticipants){
-                console.log(countParticipants);
+                //console.log(countParticipants);
             });
 
             validateParticipants().then(function(canteen_and_shuttle_forms){
@@ -499,17 +499,28 @@ module.exports = function(app){
                     }
 
                     insertCanteenSurvey().then(function(){
-                        return insertShuttleSurvey().then(function(){
+                        if(form_details.shuttle_route){
+                            return insertShuttleSurvey().then(function(){
+                                return participantsList().then(function(){
+                                    
+                                    res.send({auth: 'Saved'});
+    
+                                },  function(err){
+                                    res.send({err: 'ERR' + err});
+                                });
+                            },  function(err){
+                                res.send({err: 'ERR' + err});
+                            });
+                        } else {
                             return participantsList().then(function(){
-                                
+                                    
                                 res.send({auth: 'Saved'});
 
                             },  function(err){
                                 res.send({err: 'ERR' + err});
                             });
-                        },  function(err){
-                            res.send({err: 'ERR' + err});
-                        });
+                        }
+                        
                     },  function(err){
                         res.send({err: 'ERR' + err});
                     });
