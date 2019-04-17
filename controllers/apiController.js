@@ -44,7 +44,7 @@ module.exports = function(app){
             {name: 'css_q3', question:'Food serving/portions served'},
             {name: 'css_q4', question:'Price of food per serving'},
             {name: 'css_q5', question:'Food taste'},
-            {name: 'css_q6', question:'Enough bottled and in can drinks'},
+            {name: 'css_q6', question:'Availability of in can drinks'},
             {name: 'css_q7', question:'Enough amount and variety of snacks'},
             {name: 'css_q8', question:'Courtesy/service of canteen crew'},
             {name: 'css_q9', question:'On time response of canteen crew'},
