@@ -577,7 +577,6 @@ module.exports = function(app){
                                 employeeList_worksheet[i].D,
                                 employeeList_worksheet[i].E,
                                 employeeList_worksheet[i].F,
-                                employeeList_worksheet[i].G,
                                 upload_date
                             ]
                         );
@@ -595,7 +594,7 @@ module.exports = function(app){
                                 if(err){return reject('Connection error @ insertEmployeeList ')};
 
                                 connection.query({
-                                    sql: 'INSERT INTO tbl_employee_hc (employee_number, lastname, firstname, middlename, department, supervisor, shift, upload_date) VALUES ?',
+                                    sql: 'INSERT INTO tbl_employee_hc (employee_number, lastname, firstname, department, supervisor, shift, upload_date) VALUES ?',
                                     values: [cleaned_employeeList]
                                 },  function(err, results){
                                     if(err){ return reject(err) };
