@@ -50,7 +50,7 @@ module.exports = function(app){
             {name: 'css_q9', question:'On time response of canteen crew'},
             {name: 'css_q10', question:'Helpfulness of Canteen Crew'},
             {name: 'css_q11', question:'Cleanliness of table and chairs in the cafeteria'},
-            {name: 'css_q12', question:'Plates, glasses, spoon and fork are enough'},
+            {name: 'css_q12', question:'Availability of plates, glasses, spoon and fork'},
             {name: 'css_q13', question:'Overall cleanliness of canteen'},
             {name: 'css_q14', question:'Management of line queuing'},
             {name: 'css_q15', question:'Overall canteen ambiance'},

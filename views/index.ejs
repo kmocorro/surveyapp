@@ -109,6 +109,7 @@
     <!-- Main content -->
     <section class="content">
     <% if(canteen_and_shuttle_forms) { %>
+    <!--
     <div class="row">
         <div class="col-md-6">
             <div class="card">
@@ -121,6 +122,7 @@
             </div>
         </div>
     </div>
+    -->
     <form id="canteen_and_shuttle_survey">
         <div class="row">
             <!-- Canteen form box -->
@@ -324,7 +326,7 @@
 
 <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-    <b>Version</b> 2.0 - kmocorro
+    <b>Version</b> 3.0 - kdm
     </div>
     <strong>&copy; 2018-2019 <a href="#">META</a>.</strong> Manufacturing & Engineering Tool App
 </footer>
@@ -352,7 +354,7 @@
 <script>
     
     var shuttleForm = document.getElementById("shuttleForm");
-    shuttleForm.style.display = "none";
+    //shuttleForm.style.display = "none";
     
 
     function displayShuttleForm() {
